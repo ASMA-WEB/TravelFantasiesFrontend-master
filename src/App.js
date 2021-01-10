@@ -36,13 +36,16 @@ import RoomDetail from "./components/Hotels/RoomDetail";
 import Tours from "./components/Tour/Tours";
 import Become_a_host from "./components/Host/Become_a_host";
 import BecomeGuide from "./components/Guide-page/BecomeGuide";
+import Guide from "./components/Guide-page/Guide";
+import GuideDetail from "./components/Guide-page/GuideDetail";
+import BookGuide from "./components/Guide-page/BookGuide";
 
 // import Become_a_host from "./components/Host/Become_a_host";
 import BookTour from "./components/Bookings/BookTour";
 import Packages from "./components/Packages/Packages";
 import BookPackages from "./components/Packages/BookPackages";
 import TourDetailPage from "./components/Tour/TourDetail";
-import Guide from "./components/Guide-page/Guide";
+//import Guide from "./components/Guide-page/Guide";
 import Signup from "./components/auth/signupComponent";
 import Login from "./components/auth/loginComponent";
 import { ToastContainer, toast } from "react-toastify";
@@ -68,6 +71,7 @@ function App() {
   const [showTopMenu, setTopMenu] = React.useState(true);
 
   const [currentPackage, setcurrentPackage] = React.useState(true);
+  const [currentGuide, setcurrentGuide] = React.useState(true);
 
 
   return (
@@ -122,6 +126,9 @@ function App() {
           <Route path="/book-packages" component={BookPackages} />
           <Route path="/PackagesDetailPage" component={()=><PackagesDetailPage currentPackage={currentPackage}/>}/>
           <Route path="/TourDetailPage" component={TourDetailPage} />
+             <Route path="/GuideDetail" component={()=><GuideDetail currentGuide={currentGuide}/>}/>
+          <Route path="/Guide" component={()=><Guide setcurrentGuide={setcurrentGuide}/>} />
+          <Route path="/book-Guide" component={BookGuide} />
           <Route path="/Guide" component={Guide} />
           <ProtectedRoute
             path="/BecomeGuide"

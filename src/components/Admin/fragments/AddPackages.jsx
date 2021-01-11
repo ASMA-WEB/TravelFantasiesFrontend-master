@@ -41,6 +41,7 @@ const useStyles = makeStyles((theme) => ({
 class addPackages extends Component {
   constructor(props) {
     super(props);
+    console.log('----packages---');
     this.state = {
       PackageName: " ",
       Cost: 0,
@@ -113,30 +114,29 @@ class addPackages extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    var formData = new FormData();
+    var form  = document.getElementById('form');
+    var formData = new FormData(form);
+
     formData.append('Test', 'value');
     formData.append("PackageName", this.state.HotelName);
     formData.append("Cost", this.state.Cost);
     formData.append("Description", this.state.Description);
-     formData.append("Meal", this.state.Meal);
-     formData.append("Hotel", this.state.Hotel);
-     formData.append("no_of_days", this.state.no_of_days);
+    formData.append("Meal", this.state.Meal);
+    formData.append("Hotel", this.state.Hotel);
+    formData.append("no_of_days", this.state.no_of_days);
     formData.append("AllowedPerson", this.state.AllowedPerson);
     formData.append("Location", this.state.Location);
     formData.append("Facilities", this.state.Facilities);
     formData.append("Status", this.state.Status);
 
-    console.log('----Form--',formData)
     for (var x = 0; x < this.state.selectedFile.length; x++) {
-      formData.append("file", this.state.selectedFile[x]);
+      formData.append("photos", this.state.selectedFile[x]);
     }
-    console.log(this.state);
-    console.log('----FormDATa---',formData);
-    const data = this.state;
     packagesService
-      .addPackages(data)
+      .addPackages(formData)
       .then((response) => {
-        alert(response);
+        console.log('---res---', response);
+        alert('Successfully created!')
       })
       .catch((error) => {
         console.log(error);
@@ -155,8 +155,9 @@ class addPackages extends Component {
     return (
       <div style={{ marginTop: 50 }}>
         <form
+          id="form"
           onSubmit={this.handleSubmit}
-          enctype="multipart/form-data"
+          encType="multipart/form-data"
           style={{
             marginBottom: "50px",
             paddingLeft: "300px",

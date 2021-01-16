@@ -123,7 +123,7 @@ function App() {
           {/* <Route path="/Become_a_host" component={Become_a_host} /> */}
           <Route path="/book-tour" component={BookTour} />
           <Route path="/travel-packages" component={()=><Packages setcurrentPackage={setcurrentPackage}/>} />
-          <Route path="/book-packages" component={BookPackages} />
+          <Route path="/book-packages" component={()=><BookPackages currentPackage={currentPackage}/>}/>
           <Route path="/PackagesDetailPage" component={()=><PackagesDetailPage currentPackage={currentPackage}/>}/>
           <Route path="/TourDetailPage" component={TourDetailPage} />
              <Route path="/GuideDetail" component={()=><GuideDetail currentGuide={currentGuide}/>}/>
